@@ -936,27 +936,39 @@ let selectedStar=0;
 function selectStar(n){selectedStar=n;document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('lit',i<n));}
 
 function submitReview(){
-  const name=document.getElementById('reviewName').value.trim();
-  const service=document.getElementById('reviewService').value;
-  const comment=document.getElementById('reviewComment').value.trim();
-  const success=document.getElementById('successMsg');
-  const error=document.getElementById('errorMsg');
-  error.style.display='none';success.style.display='none';
-  if(!name||!service||!comment||!selectedStar){error.style.display='block';setTimeout(()=>error.style.display='none',3500);return;}
-  const reviews=getReviews();
-  reviews.unshift({id:Date.now(),name,rating:selectedStar,service,comment,date:getMonthYear()});
-  saveReviews(reviews);
-  renderReviews();
-  document.getElementById('reviewName').value='';
-  document.getElementById('reviewService').value='';
-  document.getElementById('reviewComment').value='';
-  selectedStar=0;
-  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('lit'));
-  success.style.display='block';
-  setTimeout(()=>success.style.display='none',4000);
-  setTimeout(()=>document.getElementById('testimonials').scrollIntoView({behavior:'smooth'}),600);
+  // 1. Get the values from the form
+  const name = document.getElementById('reviewName').value.trim();
+  const service = document.getElementById('reviewService').value;
+  const comment = document.getElementById('reviewComment').value.trim();
+  const error = document.getElementById('errorMsg');
+  
+  error.style.display = 'none';
+  
+  // 2. Check if all fields are filled
+  if(!name || !service || !comment || !selectedStar){
+    error.style.display = 'block';
+    setTimeout(() => error.style.display = 'none', 3500);
+    return;
+  }
+  
+  // 3. Format the star rating
+  const ratingStars = '★'.repeat(selectedStar) + '☆'.repeat(5 - selectedStar);
+  
+  // 4. Create the WhatsApp message
+  const waMessage = `Hi Beauty Essence! 🌸 I'd like to leave a review for my recent session:\n\n👤 Name: ${name}\n✨ Service: ${service}\n⭐ Rating: ${ratingStars}\n💬 Experience: ${comment}\n\nThank you!`;
+  
+  // 5. Open WhatsApp with the pre-filled message
+  const waUrl = 'https://wa.me/918096658578?text=' + encodeURIComponent(waMessage);
+  window.open(waUrl, '_blank');
+  
+  // 6. Clear the form after sending
+  document.getElementById('reviewName').value = '';
+  document.getElementById('reviewService').value = '';
+  document.getElementById('reviewComment').value = '';
+  selectedStar = 0;
+  document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('lit'));
 }
-
+  
 /* ══════════════════════════════════════════
    NAV & MENU
 ══════════════════════════════════════════ */
