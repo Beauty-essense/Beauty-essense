@@ -775,6 +775,176 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
   .menu-item-price{font-size:.7rem}
 }
 
+
+/* ── BOOKING DETAILS MODAL ── */
+.booking-modal{
+  position:fixed;
+  inset:0;
+  z-index:260;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.booking-modal.open{display:flex}
+.booking-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(20,10,16,.28);
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+}
+.booking-modal-card{
+  position:relative;
+  width:min(760px,100%);
+  max-height:min(92vh, 920px);
+  overflow:auto;
+  border-radius:28px;
+  padding:28px;
+  box-sizing:border-box;
+  box-shadow:0 24px 80px rgba(0,0,0,.28);
+}
+.booking-modal-close{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:none;
+  background:var(--rose);
+  color:#fff;
+  font-size:1.15rem;
+  cursor:pointer;
+  z-index:2;
+  box-shadow:0 8px 20px rgba(196,132,154,.35);
+}
+.booking-modal-close:hover{background:var(--rose-dark);transform:rotate(90deg)}
+.booking-modal-head{padding-right:48px;margin-bottom:18px}
+.booking-modal-head h2{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,3.3vw,2.5rem);
+  color:#fff;
+  font-weight:400;
+  margin:8px 0 8px;
+  line-height:1.15;
+}
+.booking-modal-head p{
+  color:rgba(255,255,255,.72);
+  line-height:1.7;
+  font-size:.96rem;
+  max-width:620px;
+}
+.booking-modal-summary{
+  border-radius:24px;
+  padding:18px;
+  margin:18px 0 20px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.16);
+}
+.booking-modal-summary-title{
+  font-size:.8rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.72);
+  margin-bottom:12px;
+  font-weight:600;
+}
+.booking-modal-summary-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.booking-modal-summary-row{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  color:#fff;
+  font-size:.94rem;
+}
+.booking-modal-summary-row span:first-child{font-weight:500}
+.booking-modal-summary-row span:last-child{font-weight:700;white-space:nowrap}
+.booking-modal-summary-total{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.18);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#fff;
+}
+.booking-modal-summary-total span{font-size:1rem;font-weight:600}
+.booking-modal-summary-total b{font-size:1.35rem}
+.booking-modal-form{display:block}
+.booking-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.booking-field{display:flex;flex-direction:column;gap:8px}
+.booking-field-full{grid-column:1 / -1}
+.booking-field label{
+  font-size:.78rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.72);
+  font-weight:600;
+}
+.booking-input{
+  width:100%;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(255,255,255,.16);
+  color:#fff;
+  padding:14px 16px;
+  font-family:var(--sans);
+  outline:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+}
+.booking-input::placeholder{color:rgba(255,255,255,.48)}
+.booking-input:focus{
+  border-color:rgba(255,255,255,.5);
+  box-shadow:0 0 0 3px rgba(196,132,154,.18), inset 0 1px 0 rgba(255,255,255,.24);
+  background:rgba(255,255,255,.2);
+}
+.booking-textarea{resize:vertical;min-height:92px}
+.booking-actions{
+  margin-top:20px;
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+.booking-actions .btn{
+  min-width:180px;
+  justify-content:center;
+}
+.booking-modal-summary-empty{
+  padding:16px;
+  border-radius:18px;
+  text-align:center;
+  color:rgba(255,255,255,.68);
+  background:rgba(255,255,255,.08);
+  border:1px dashed rgba(255,255,255,.18);
+}
+@media(max-width:768px){
+  .booking-modal{padding:14px}
+  .booking-modal-card{padding:22px;border-radius:24px;max-height:94vh}
+  .booking-grid{grid-template-columns:1fr}
+  .booking-actions{flex-direction:column}
+  .booking-actions .btn{width:100%;min-width:0}
+  .booking-modal-head{padding-right:42px}
+  .booking-modal-summary{padding:14px}
+  .booking-modal-summary-row{font-size:.88rem}
+  .booking-modal-summary-total b{font-size:1.15rem}
+}
+@media(max-width:480px){
+  .booking-modal-card{padding:18px}
+  .booking-modal-head h2{font-size:1.45rem}
+  .booking-modal-head p{font-size:.88rem}
+  .booking-input{padding:12px 14px;border-radius:14px}
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{padding:17px 26px}nav.scrolled{padding:12px 26px}
@@ -997,12 +1167,70 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
             <b id="menuTotal">₹0</b>
           </div>
           <div class="summary-actions">
-            <button class="btn btn-primary" type="button" onclick="continueMenuToWhatsApp()">Continue on WhatsApp</button>
+            <button class="btn btn-primary" type="button" onclick="openMenuDetailsModal()">Continue on WhatsApp</button>
             <button class="btn btn-outline" type="button" onclick="closeMenu()">Close Menu</button>
           </div>
         </aside>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<!-- ══ MENU DETAILS MODAL ══ -->
+<div id="bookingDetailsModal" class="booking-modal" aria-hidden="true">
+  <div class="booking-modal-backdrop" onclick="closeMenuDetailsModal()"></div>
+  <div class="booking-modal-card liquid-glass-dark" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+    <button class="booking-modal-close" type="button" onclick="closeMenuDetailsModal()" aria-label="Close details popup">✕</button>
+    <div class="booking-modal-head">
+      <span class="section-label">Your Booking Details</span>
+      <h2 id="bookingModalTitle">Add your details before WhatsApp</h2>
+      <p>We will send your selected menu items, total price, and your contact details directly to WhatsApp in one message.</p>
+    </div>
+
+    <div class="booking-modal-summary">
+      <div class="booking-modal-summary-title">Selected items</div>
+      <div id="bookingModalSummary" class="booking-modal-summary-list"></div>
+      <div class="booking-modal-summary-total">
+        <span>Total</span>
+        <b id="bookingModalTotal">₹0</b>
+      </div>
+    </div>
+
+    <form class="booking-modal-form" id="bookingDetailsForm">
+      <div class="booking-grid">
+        <div class="booking-field">
+          <label for="bookingName">Full Name</label>
+          <input id="bookingName" class="booking-input" type="text" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div class="booking-field">
+          <label for="bookingPhone">Mobile Number</label>
+          <input id="bookingPhone" class="booking-input" type="tel" placeholder="WhatsApp number" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="booking-field">
+          <label for="bookingLocation">Location / Area</label>
+          <input id="bookingLocation" class="booking-input" type="text" placeholder="Your area or locality" autocomplete="address-level2" required>
+        </div>
+        <div class="booking-field">
+          <label for="bookingDateTime">Preferred Date / Time</label>
+          <input id="bookingDateTime" class="booking-input" type="text" placeholder="Example: Today 6 PM" autocomplete="off">
+        </div>
+        <div class="booking-field booking-field-full">
+          <label for="bookingAddress">Full Address</label>
+          <textarea id="bookingAddress" class="booking-input booking-textarea" placeholder="House number, street, landmark, apartment, etc." rows="3" required></textarea>
+        </div>
+        <div class="booking-field booking-field-full">
+          <label for="bookingNotes">Extra Notes</label>
+          <textarea id="bookingNotes" class="booking-input booking-textarea" placeholder="Any extra instructions, landmark, or special request" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="booking-actions">
+        <button class="btn btn-outline" type="button" onclick="closeMenuDetailsModal()">Back to Menu</button>
+        <button class="btn btn-primary" type="submit">Continue to WhatsApp</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -1579,6 +1807,7 @@ function updateMenuSummary(){
   if(!values.length){
     list.innerHTML='<div class="menu-empty">Nothing selected yet.</div>';
     totalEl.textContent = currency(0);
+    renderBookingModalSummary();
     return;
   }
 
@@ -1590,14 +1819,10 @@ function updateMenuSummary(){
   }).join('');
 
   totalEl.textContent = currency(total);
+  renderBookingModalSummary();
 }
 function continueMenuToWhatsApp(){
-  const values=[...selectedMenu.values()];
-  if(!values.length) return;
-  const total = values.reduce((sum, v) => sum + (typeof v.price === 'number' ? v.price : 0), 0);
-  const lines = values.map(v => `• ${v.name}${typeof v.price === 'number' ? ` — ${currency(v.price)}` : (v.note ? ` — ${v.note}` : '')}`);
-  const msg = `Hello ${SITE_CONFIG.brandName}! I would like to book these services:\n\n${lines.join('\n')}\n\nTotal: ${currency(total)}\n\nPlease confirm availability.`;
-  window.open(`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`,'_blank');
+  openMenuDetailsModal();
 }
 function clearMenuSelection(){
   selectedMenu.clear();
@@ -1642,6 +1867,82 @@ document.addEventListener('input', e=>{
 window.addEventListener('storage', e=>{
   if(e.key===REVIEW_KEY) renderReviews();
 });
+
+
+function renderBookingModalSummary(){
+  const list = document.getElementById('bookingModalSummary');
+  const totalEl = document.getElementById('bookingModalTotal');
+  if(!list || !totalEl) return;
+
+  const values=[...selectedMenu.values()];
+  if(!values.length){
+    list.innerHTML = '<div class="booking-modal-summary-empty">No services selected yet.</div>';
+    totalEl.textContent = currency(0);
+    return;
+  }
+
+  let total = 0;
+  list.innerHTML = values.map(v => {
+    if(typeof v.price === 'number') total += v.price;
+    const priceLabel = typeof v.price === 'number' ? currency(v.price) : (v.note || 'Price on request');
+    return `<div class="booking-modal-summary-row"><span>${escHtml(v.name)}</span><span>${escHtml(priceLabel)}</span></div>`;
+  }).join('');
+  totalEl.textContent = currency(total);
+}
+function openMenuDetailsModal(){
+  const values=[...selectedMenu.values()];
+  if(!values.length) return;
+  renderBookingModalSummary();
+  const modal=document.getElementById('bookingDetailsModal');
+  if(modal){
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+  }
+  const nameField=document.getElementById('bookingName');
+  if(nameField && !nameField.value) nameField.focus();
+}
+function closeMenuDetailsModal(){
+  const modal=document.getElementById('bookingDetailsModal');
+  if(modal){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+  }
+}
+function submitMenuDetailsToWhatsApp(){
+  const d = {
+    name: document.getElementById('bookingName')?.value.trim() || '',
+    phone: document.getElementById('bookingPhone')?.value.trim() || '',
+    location: document.getElementById('bookingLocation')?.value.trim() || '',
+    address: document.getElementById('bookingAddress')?.value.trim() || '',
+    preferred: document.getElementById('bookingDateTime')?.value.trim() || '',
+    notes: document.getElementById('bookingNotes')?.value.trim() || ''
+  };
+
+  const values=[...selectedMenu.values()];
+  if(!values.length) return;
+
+  const total = values.reduce((sum, v) => sum + (typeof v.price === 'number' ? v.price : 0), 0);
+  const lines = values.map(v => `• ${v.name}${typeof v.price === 'number' ? ` — ${currency(v.price)}` : (v.note ? ` — ${v.note}` : '')}`);
+
+  const details = [
+    `Name: ${d.name || 'Not provided'}`,
+    `Mobile: ${d.phone || 'Not provided'}`,
+    `Location: ${d.location || 'Not provided'}`,
+    `Address: ${d.address || 'Not provided'}`
+  ];
+  if(d.preferred) details.push(`Preferred time: ${d.preferred}`);
+  if(d.notes) details.push(`Notes: ${d.notes}`);
+
+  const msg = `Hello ${SITE_CONFIG.brandName}! I would like to book these services:
+
+${lines.join('\n')}
+
+Total: ${currency(total)}
+
+Customer details:\n${details.join('\n')}`;
+  window.open(`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeMenuDetailsModal();
+}
 
 /* ══════════════════════════════════════════
    NAV & GENERAL EFFECTS
@@ -1743,9 +2044,25 @@ function openMenu(e){
 function closeMenu(){
   const page=document.getElementById('menuPage');
   if(page) page.classList.remove('open');
+  closeMenuDetailsModal();
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){ closeMenu(); closeHiring(); }});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    const modal=document.getElementById('bookingDetailsModal');
+    if(modal && modal.classList.contains('open')){ closeMenuDetailsModal(); return; }
+    closeMenu();
+    closeHiring();
+  }
+});
+
+const bookingDetailsForm = document.getElementById('bookingDetailsForm');
+if(bookingDetailsForm){
+  bookingDetailsForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    submitMenuDetailsToWhatsApp();
+  });
+}
 
 /* ══════════════════════════════════════════
    HIRING PAGE
