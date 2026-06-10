@@ -216,6 +216,20 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
 .hiring-close{position:fixed;top:22px;right:28px;background:var(--rose);color:var(--white);border:none;border-radius:50%;width:44px;height:44px;font-size:1.4rem;cursor:pointer;z-index:201;display:flex;align-items:center;justify-content:center;transition:background 0.3s,transform 0.2s;box-shadow:0 4px 16px rgba(196,132,154,0.4)}
 .hiring-close:hover{background:var(--rose-dark);transform:rotate(90deg)}
 
+/* ── MENU OVERLAY ── */
+#menuPage{position:fixed;inset:0;z-index:190;overflow-y:auto;box-sizing:border-box;
+  background:linear-gradient(140deg,#f9e8f0 0%,#f3d5e5 35%,#ead0df 70%,#f5e0eb 100%)!important;
+  backdrop-filter:blur(30px) saturate(180%);
+  -webkit-backdrop-filter:blur(30px) saturate(180%);
+  transform:translateX(100%);transition:transform 0.5s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;align-items:center;padding:80px 20px 40px}
+#menuPage.open{transform:translateX(0)}
+.menu-close{position:fixed;top:22px;left:28px;background:var(--rose);color:var(--white);border:none;border-radius:50%;width:44px;height:44px;font-size:1.4rem;cursor:pointer;z-index:201;display:flex;align-items:center;justify-content:center;transition:background 0.3s,transform 0.2s;box-shadow:0 4px 16px rgba(196,132,154,0.4)}
+.menu-close:hover{background:var(--rose-dark);transform:rotate(90deg)}
+.menu-page-wrap{width:100%;max-width:1180px}
+.menu-page-hero{margin-bottom:6px}
+.menu-page-note{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:rgba(196,132,154,0.12);border:1px solid rgba(196,132,154,0.3);border-radius:30px;padding:7px 18px;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;color:var(--rose-dark)}
+
 /* Hiring header glass card */
 .hiring-header{
   background:rgba(255,255,255,0.18)!important;
@@ -299,11 +313,12 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
   transform:translateX(6px) scale(1.01)!important;
 }
 .step-option.selected{
-  background:rgba(196,132,154,0.22)!important;
-  border-color:rgba(196,132,154,0.55)!important;
-  box-shadow:0 8px 28px rgba(196,132,154,0.2),inset 0 1px 0 rgba(255,255,255,0.7)!important;
-  color:var(--rose-dark);
+  background:rgba(46,26,34,0.92)!important;
+  border-color:rgba(46,26,34,0.95)!important;
+  box-shadow:0 10px 28px rgba(46,26,34,0.28),inset 0 1px 0 rgba(255,255,255,0.15)!important;
+  color:var(--white);
 }
+.step-option.selected .opt-icon{color:var(--white);}
 .step-option .opt-icon{font-size:1.3rem;flex-shrink:0;width:36px;text-align:center}
 .step-option-check{margin-left:auto;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(196,132,154,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.25s}
 .step-option.selected .step-option-check{background:var(--rose-dark);border-color:var(--rose-dark);color:white}
@@ -484,6 +499,280 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
   30%{transform:translateY(-7px)}
   60%{transform:translateY(-3px)}
   80%{transform:translateY(-9px)}
+}
+
+
+/* ── PRICING MENU ── */
+#menu{
+  background:linear-gradient(180deg,#fff6fa 0%,#fbe7f1 48%,#f7dde9 100%);
+  position:relative;
+}
+.menu-shell{
+  margin-top:42px;
+  display:grid;
+  grid-template-columns: 220px minmax(0,1fr) 320px;
+  gap:22px;
+  align-items:start;
+}
+.menu-sticky{
+  position:sticky;
+  top:100px;
+}
+.menu-categories{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.menu-tab{
+  width:100%;
+  padding:14px 16px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.45);
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(26px) saturate(220%);
+  -webkit-backdrop-filter:blur(26px) saturate(220%);
+  box-shadow:0 12px 30px rgba(196,132,154,0.08), inset 0 1px 0 rgba(255,255,255,.8);
+  color:var(--text-mid);
+  font-family:var(--sans);
+  font-size:.88rem;
+  font-weight:600;
+  text-align:left;
+  cursor:pointer;
+  transition:.25s ease;
+}
+.menu-tab:hover,.menu-tab.active{
+  transform:translateX(4px);
+  color:var(--rose-dark);
+  border-color:rgba(196,132,154,.25);
+  background:rgba(255,255,255,0.32);
+}
+.menu-main{
+  min-width:0;
+}
+.menu-search-wrap{
+  margin:18px 0 14px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.menu-search{
+  flex:1 1 280px;
+  padding:14px 16px;
+  border-radius:16px;
+  border:1px solid rgba(196,132,154,.18);
+  background:rgba(255,255,255,.72);
+  outline:none;
+  font-family:var(--sans);
+  color:var(--text-dark);
+  box-shadow:0 10px 26px rgba(196,132,154,.08);
+}
+.menu-search:focus{
+  border-color:rgba(196,132,154,.45);
+  box-shadow:0 0 0 3px rgba(196,132,154,.12),0 10px 26px rgba(196,132,154,.08);
+}
+.menu-reset{
+  padding:14px 18px;
+  border-radius:16px;
+  border:1px solid rgba(196,132,154,.18);
+  background:rgba(255,255,255,.24);
+  color:var(--rose-dark);
+  font-family:var(--sans);
+  cursor:pointer;
+}
+.menu-category{
+  margin-bottom:20px;
+  border-radius:24px;
+  padding:20px;
+}
+.menu-category h3{
+  font-family:var(--serif);
+  font-size:1.45rem;
+  color:var(--text-dark);
+  margin-bottom:6px;
+}
+.menu-category p{
+  color:var(--text-light);
+  font-size:.9rem;
+  line-height:1.6;
+}
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.menu-item{
+  border-radius:18px;
+  padding:16px 14px;
+  border:1px solid rgba(255,255,255,0.45);
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(24px) saturate(220%);
+  -webkit-backdrop-filter:blur(24px) saturate(220%);
+  box-shadow:0 10px 24px rgba(196,132,154,.08), inset 0 1px 0 rgba(255,255,255,.8);
+  cursor:pointer;
+  transition:.25s ease;
+  text-align:left;
+}
+.menu-item:hover{
+  transform:translateY(-4px);
+  border-color:rgba(196,132,154,.35);
+  background:rgba(255,255,255,.34);
+  box-shadow:0 18px 38px rgba(196,132,154,.16), inset 0 1px 0 rgba(255,255,255,.9);
+}
+.menu-item.selected{
+  transform:translateY(-4px);
+  border-color:rgba(46,26,34,.95);
+  background:rgba(46,26,34,.92);
+  box-shadow:0 20px 44px rgba(46,26,34,.26), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.menu-item.selected .menu-item-title,
+.menu-item.selected .menu-item-sub{
+  color:rgba(255,255,255,.92);
+}
+.menu-item.selected .menu-item-price{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+}
+.menu-item-title{
+  font-weight:600;
+  color:var(--text-dark);
+  line-height:1.35;
+}
+.menu-item-sub{
+  font-size:.78rem;
+  color:var(--text-light);
+  margin-top:6px;
+}
+.menu-item-price{
+  margin-top:12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(196,132,154,.12);
+  color:var(--rose-dark);
+  font-size:.8rem;
+  font-weight:700;
+}
+.menu-note{
+  font-size:.77rem;
+  color:var(--text-light);
+  margin-top:8px;
+}
+.menu-summary{
+  position:sticky;
+  top:100px;
+  border-radius:28px;
+  padding:22px;
+}
+.summary-title{
+  font-family:var(--serif);
+  font-size:1.4rem;
+  color:var(--text-dark);
+  margin-bottom:6px;
+}
+.summary-sub{
+  font-size:.88rem;
+  color:var(--text-light);
+  line-height:1.6;
+}
+.summary-list{
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-height:300px;
+  overflow:auto;
+  padding-right:4px;
+}
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.24);
+  font-size:.9rem;
+}
+.summary-row:last-child{border-bottom:none}
+.summary-row span:first-child{color:var(--text-dark);font-weight:500}
+.summary-row span:last-child{color:var(--rose-dark);font-weight:700;white-space:nowrap}
+.summary-total{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.32);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.summary-total strong{
+  font-size:1.05rem;
+  color:var(--text-dark);
+}
+.summary-total b{
+  font-size:1.35rem;
+  color:var(--rose-dark);
+}
+.summary-actions{
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.btn-menu{
+  width:100%;
+  justify-content:center;
+}
+.menu-empty{
+  padding:20px;
+  text-align:center;
+  color:var(--text-light);
+  background:rgba(255,255,255,.18);
+  border-radius:18px;
+  border:1px dashed rgba(196,132,154,.2);
+}
+.menu-anchor{
+  scroll-margin-top: 100px;
+}
+@media(max-width:1100px){
+  .menu-shell{grid-template-columns:1fr;gap:18px}
+  .menu-sticky,.menu-summary{position:relative;top:auto}
+}
+@media(max-width:768px){
+  #menuPage{padding:70px 14px 28px}
+  .menu-page-wrap{width:100%}
+  .menu-page-hero h1{font-size:1.9rem}
+  .menu-page-hero .sub{font-size:.88rem;line-height:1.55}
+  .menu-search-wrap{margin:14px 0 12px;gap:10px}
+  .menu-search,.menu-reset{padding:11px 12px;border-radius:14px;font-size:.85rem}
+  .menu-category{padding:12px;border-radius:18px}
+  .menu-category h3{font-size:1.2rem}
+  .menu-category p{font-size:.82rem}
+  .menu-grid{grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  .menu-item{padding:12px 10px;border-radius:14px}
+  .menu-item-title{font-size:.92rem}
+  .menu-item-sub{font-size:.72rem;line-height:1.35}
+  .menu-item-price{margin-top:8px;padding:5px 8px;font-size:.74rem}
+  .menu-sticky,.menu-summary{position:relative;top:auto}
+  .menu-sticky{padding:16px}
+  .menu-summary{padding:16px;border-radius:20px}
+  .summary-title{font-size:1.2rem}
+  .summary-sub{font-size:.82rem}
+  .summary-list{max-height:220px}
+  .summary-total strong{font-size:.95rem}
+  .summary-total b{font-size:1.1rem}
+  .summary-actions{margin-top:14px}
+}
+@media(max-width:480px){
+  #menuPage{padding:66px 12px 22px}
+  .menu-page-hero h1{font-size:1.65rem}
+  .menu-page-hero .sub{font-size:.84rem}
+  .menu-grid{grid-template-columns:1fr 1fr;gap:7px}
+  .menu-item{padding:11px 9px}
+  .menu-item-title{font-size:.88rem}
+  .menu-item-sub{font-size:.69rem}
+  .menu-item-price{font-size:.7rem}
 }
 
 /* ── RESPONSIVE ── */
@@ -669,12 +958,61 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
     <button class="step-next" onclick="sendToWhatsApp()" style="margin:0 auto;font-size:1rem;padding:16px 36px">Open WhatsApp →</button>
   </div>
 </div><!-- /hiringPage -->
+<!-- ══ MENU PAGE OVERLAY ══ -->
+<div id="menuPage">
+  <button class="menu-close" onclick="closeMenu()" aria-label="Close">✕</button>
+  <div class="menu-page-wrap">
+    <section class="hero menu-page-hero" style="min-height:auto;padding:0 0 6px;background:none;">
+      <div class="hero-content" style="max-width:100%">
+        <div class="hero-card liquid-glass" style="position:relative;right:auto;top:auto;transform:none;width:100%;margin:0;">
+          <span class="label">Pricing Menu</span>
+          <h1 style="margin-top:10px">Select services from the menu</h1>
+          <p class="sub">Choose the services you want, see the total instantly, then continue to WhatsApp with everything you selected. Tap the category buttons to jump to a section.</p>
+          <div id="saleBanner" class="menu-page-note" style="display:none"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap" style="padding-left:0;padding-right:0">
+      <div class="search-row">
+        <input id="menuSearch" class="menu-search" type="search" placeholder="Search services, treatments, or prices…" />
+        <button class="menu-reset" type="button" onclick="clearMenuSelection()">Clear Selection</button>
+      </div>
+
+      <div class="menu-shell">
+        <aside class="glass menu-sticky">
+          <div class="title-sm">Categories</div>
+          <div id="menuTabs" class="menu-categories"></div>
+          <div class="hint">Tap any item to select or unselect it. Prices update in the summary panel.</div>
+        </aside>
+
+        <main class="menu-main" id="menuCategories"></main>
+
+        <aside class="glass menu-summary">
+          <div class="summary-title">Your Selection</div>
+          <div class="summary-sub">Review everything before opening WhatsApp.</div>
+          <div id="menuSummaryList" class="summary-list"><div class="menu-empty">Nothing selected yet.</div></div>
+          <div class="summary-total">
+            <strong>Total</strong>
+            <b id="menuTotal">₹0</b>
+          </div>
+          <div class="summary-actions">
+            <button class="btn btn-primary" type="button" onclick="continueMenuToWhatsApp()">Continue on WhatsApp</button>
+            <button class="btn btn-outline" type="button" onclick="closeMenu()">Close Menu</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ══ NAV ══ -->
 <nav id="mainNav">
   <a class="nav-logo" href="#"><span>Beauty</span> Essence</a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#" onclick="openMenu(event)">Menu</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#leave-review">Leave a Review</a></li>
@@ -689,6 +1027,7 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
 <!-- mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#" onclick="closeMobile();openMenu(event)">Menu</a>
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#testimonials" onclick="closeMobile()">Reviews</a>
   <a href="#leave-review" onclick="closeMobile()">Leave a Review</a>
@@ -705,6 +1044,7 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
     <div class="hero-actions">
       <a href="https://wa.me/918096658578?text=Hello%20Beauty%20Essence!%20I%27d%20like%20to%20book%20a%20session." target="_blank" class="btn-primary">📲 Book Now</a>
       <a href="#services" class="btn-outline">Explore Services ↓</a>
+      <a href="#" class="btn-outline" onclick="openMenu(event)">Open Menu →</a>
     </div>
     <div class="hero-actions" style="margin-top: 30px; gap: 40px;">
       <div class="stat-item"><span class="stat-num counter" data-target="50">0</span><span class="stat-label">Trusted Clients</span></div>
@@ -754,6 +1094,7 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
     </div>
   </div>
 </section>
+
 
 <!-- ══ ABOUT ══ -->
 <section id="about">
@@ -817,7 +1158,7 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
 <section id="testimonials">
   <div class="text-center fade-in">
     <span class="section-label">Client Love</span>
-    <h2 class="section-title">What Our Clients Say</h2>
+    <h2 class="section-title">What Clients Say</h2>
     <p class="section-sub">Real experiences from real people who trust Beauty Essence for their beauty care.</p>
   </div>
   <div class="testimonials-grid" id="reviewsContainer"></div>
@@ -901,65 +1242,409 @@ footer{background:#1C1014;color:rgba(255,255,255,0.45);padding:44px 60px;display
   <p class="footer-copy">© 2026 Beauty Essence.<br>All rights reserved.</p>
 </footer>
 
+
 <script>
 /* ══════════════════════════════════════════
-   REVIEW SYSTEM
-══════════════════════════════════════════ *//* ══════════════════════════════════════════
-   REVIEW SYSTEM (WHATSAPP REDIRECT)
+   SITE CONFIG
 ══════════════════════════════════════════ */
-let selectedStar = 0;
-
-// Handles the visual star selection UI
-function selectStar(n) {
-  selectedStar = n;
-  document.querySelectorAll('.star-btn').forEach((b, i) => b.classList.toggle('lit', i < n));
-}
-
-// Validates fields, formats the text, and redirects to WhatsApp
-function submitReview() {
-  const name = document.getElementById('reviewName').value.trim();
-  const service = document.getElementById('reviewService').value;
-  const comment = document.getElementById('reviewComment').value.trim();
-  const success = document.getElementById('successMsg');
-  const error = document.getElementById('errorMsg');
-  
-  error.style.display = 'none';
-  success.style.display = 'none';
-  
-  // Validation check
-  if (!name || !service || !comment || !selectedStar) {
-    error.style.display = 'block';
-    setTimeout(() => error.style.display = 'none', 3500);
-    return;
-  }
-  
-  // Format the star string for the text message
-  const starRating = '★'.repeat(selectedStar) + '☆'.repeat(5 - selectedStar);
-  
-  // Construct the beautifully structured WhatsApp message
-  const msg = `Hello Beauty Essence! 🌸 I'd like to share my review.\n\n` +
-              `👤 Name: ${name}\n` +
-              `💅 Service Used: ${service}\n` +
-              `⭐ Rating: ${starRating} (${selectedStar}/5)\n` +
-              `💬 Experience: ${comment}`;
-  
-  // Fire open WhatsApp to Mohana's number with the pre-filled text
-  window.open('https://wa.me/918096658578?text=' + encodeURIComponent(msg), '_blank');
-  
-  // Clear the form fields back to normal
-  document.getElementById('reviewName').value = '';
-  document.getElementById('reviewService').value = '';
-  document.getElementById('reviewComment').value = '';
-  selectedStar = 0;
-  document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('lit'));
-  
-  // Show the success confirmation message on the screen
-  success.style.display = 'block';
-  setTimeout(() => success.style.display = 'none', 4000);
-  }
+const SITE_CONFIG = {
+  whatsappNumber: '918096658578',
+  brandName: 'Beauty Essence',
+  founderName: 'Mohana Kalyani',
+  currency: '₹',
+  weeklySaleText: '', // Edit this to show a sale banner instantly, e.g. "This week: 15% off facials"
+  weeklySaleLink: '#'
+};
 
 /* ══════════════════════════════════════════
-   NAV & MENU
+   MENU DATA
+   Edit prices and items here only.
+══════════════════════════════════════════ */
+const MENU_DATA = [
+  {
+    id: 'threadings',
+    title: 'Threadings',
+    desc: 'Quick shaping and face detailing.',
+    items: [
+      { name: 'Eyebrows', price: 50 },
+      { name: 'Upper Lip', price: 40 },
+      { name: 'Lower Lip', price: 40 },
+      { name: 'Chin', price: 40 },
+      { name: 'Forehead', price: 40 },
+      { name: 'Sides', price: 200 },
+      { name: 'Full Face', price: 300 },
+    ]
+  },
+  {
+    id: 'waxing',
+    title: 'Waxing',
+    desc: 'Classic waxing services.',
+    items: [
+      { name: 'Normal Wax Hands', price: 250 },
+      { name: 'Normal Wax Underarms', price: 100 },
+      { name: 'Normal Wax Full Legs', price: 500 },
+      { name: 'Normal Wax Half Legs', price: 300 },
+      { name: 'Normal Wax Full Body', price: 1050 },
+    ]
+  },
+  {
+    id: 'chocolate-wax',
+    title: 'Chocolate Wax',
+    desc: 'Gentler chocolate wax options.',
+    items: [
+      { name: 'Hands', price: 300 },
+      { name: 'Underarms', price: 100 },
+      { name: 'Full Legs', price: 650 },
+      { name: 'Half Legs', price: 415 },
+      { name: 'Chocolate Full Body Wax', price: 1200 },
+    ]
+  },
+  {
+    id: 'tan-pack',
+    title: 'Tan Pack',
+    desc: 'Area-based tan pack pricing.',
+    items: [
+      { name: 'Nourishing Tan Pack — Face', price: 650 },
+      { name: 'Nourishing Tan Pack — Neck', price: 400 },
+      { name: 'Nourishing Tan Pack — Back', price: 650 },
+      { name: 'Nourishing Tan Pack — Hands', price: 650 },
+      { name: 'D Tan Packs — Face', price: 600 },
+      { name: 'D Tan Packs — Neck', price: 500 },
+      { name: 'D Tan Packs — Back', price: 650 },
+      { name: 'D Tan Packs — Hands', price: 450 },
+      { name: 'Tan Packs Reg. — Face', price: 415 },
+      { name: 'Tan Packs Reg. — Neck', price: 350 },
+      { name: 'Tan Packs Reg. — Back', price: 505 },
+      { name: 'Tan Packs Reg. — Hands', price: 350 },
+    ]
+  },
+  {
+    id: 'facials',
+    title: 'Facials',
+    desc: 'Complete facial treatments from natural to premium.',
+    items: [
+      { name: 'Fruit Facial', price: 700 },
+      { name: 'All Natural Facials', price: 850 },
+      { name: 'Aloevera Facial', price: 750 },
+      { name: 'Orange Facial', price: 800 },
+      { name: 'Cucumbar Facial', price: 600 },
+      { name: 'Mixed Fruit Facial', price: 900 },
+      { name: 'Gold Facial', price: 1300 },
+      { name: 'Pearl Facial', price: 1200 },
+      { name: 'Platinum Facial', price: 1500 },
+      { name: 'Milk and Chocolate Facial', price: 1450 },
+      { name: 'Almond Facial', price: 1250 },
+      { name: 'Insta Glow', price: 1700 },
+      { name: 'Charcoal', price: 1900 },
+      { name: 'Tightning Skin Facial', price: 1900 },
+      { name: 'Tan Clear Facial', price: 2000 },
+    ]
+  },
+  {
+    id: 'clean-up',
+    title: 'Face Clean Up',
+    desc: 'Freshen your skin with gentle cleanup options.',
+    items: [
+      { name: 'Regular Cleanup', price: 250 },
+      { name: 'Fruit Cleanup', price: 250 },
+      { name: 'Aroma Cleanup', price: 300 },
+      { name: 'Gold Cleanup', price: 500 },
+      { name: 'Pearl Cleanup', price: 500 },
+    ]
+  },
+  {
+    id: 'massage',
+    title: 'Body Massage',
+    desc: 'Relaxing body massage options.',
+    items: [
+      { name: 'Body Aroma Massage', price: 1500 },
+      { name: 'Body Scrub Massage', price: 1500 },
+      { name: 'Fruit Body Massage', price: 1200 },
+    ]
+  },
+  {
+    id: 'hair-cut',
+    title: 'Hair Cut',
+    desc: 'Salon-style haircuts and styling.',
+    items: [
+      { name: 'Straight U', price: 300 },
+      { name: 'Slight U', price: 300 },
+      { name: 'Deep U', price: 400 },
+      { name: 'Layer Cut', price: 750 },
+      { name: 'Feather Cut', price: 800 },
+      { name: 'Funk Cut', price: 1500 },
+      { name: 'Children Cut', price: 2000 },
+    ]
+  },
+  {
+    id: 'gun-shot',
+    title: 'Gun Shot',
+    desc: 'Quick ear and nose services.',
+    items: [
+      { name: 'Ears', price: 800 },
+      { name: 'Nose', price: 500 },
+    ]
+  },
+  {
+    id: 'henna',
+    title: 'Henna',
+    desc: 'Henna pricing by hair length.',
+    items: [
+      { name: 'Short Hair', price: 300 },
+      { name: 'Medium Hair', price: 450 },
+      { name: 'Long Hair', price: 600 },
+    ]
+  },
+  {
+    id: 'makeup',
+    title: 'Makeup',
+    desc: 'Beauty looks for occasions and events.',
+    items: [
+      { name: 'Light Makeup', price: 1000 },
+      { name: 'Complete Makeup', price: 4000 },
+      { name: 'Saree Draping', price: 300 },
+      { name: 'Hair Style', price: 300 },
+    ]
+  },
+  {
+    id: 'mehandi',
+    title: 'Mehandi',
+    desc: 'Cost depends on design.',
+    items: [
+      { name: 'Arabic', note: 'Cost depends on design' },
+      { name: 'Indian', note: 'Cost depends on design' },
+      { name: 'Single Line', note: 'Cost depends on design' },
+    ]
+  }
+];
+
+const SERVICE_TO_MENU = {
+  0: 'hair-cut',
+  1: 'facials',
+  2: 'makeup'
+};
+
+/* ══════════════════════════════════════════
+   REVIEW SYSTEM
+══════════════════════════════════════════ */
+const REVIEW_KEY = 'be_reviews_shared_v3';
+let selectedStar = 0;
+
+function getReviews(){
+  try{
+    const raw = localStorage.getItem(REVIEW_KEY);
+    return raw ? JSON.parse(raw) : [];
+  }catch(e){
+    return [];
+  }
+}
+function saveReviews(arr){
+  try{ localStorage.setItem(REVIEW_KEY, JSON.stringify(arr)); }catch(e){}
+}
+function escHtml(s){
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function getInitial(name){
+  return (name || '?').trim().charAt(0).toUpperCase() || '?';
+}
+function getMonthYear(){
+  const d=new Date();
+  return d.toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+}
+function hashColor(name){
+  const colors=['#C4849A','#9B5C73','#C8977A','#8B6B6B','#A07585','#D4A5A5'];
+  let h=0;
+  for(let i=0;i<name.length;i++) h=(h*31+name.charCodeAt(i))%colors.length;
+  return colors[Math.abs(h)%colors.length];
+}
+function renderReviews(){
+  const container=document.getElementById('reviewsContainer');
+  if(!container) return;
+  const reviews=getReviews();
+  if(!reviews.length){
+    container.innerHTML='<div class="no-reviews">Be the first to leave a review! 🌸</div>';
+    return;
+  }
+  container.innerHTML=reviews.map(r=>`
+    <div class="testimonial-card fade-in visible">
+      <span class="quote-mark">"</span>
+      <p class="testimonial-text">${escHtml(r.comment)}</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:${hashColor(r.name)}">${getInitial(r.name)}</div>
+        <div>
+          <p class="author-name">${escHtml(r.name)}</p>
+          <p class="author-service">${escHtml(r.service)}</p>
+          <p class="author-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function selectStar(n){
+  selectedStar=n;
+  document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('lit', i<n));
+}
+function submitReview(){
+  const name=document.getElementById('reviewName').value.trim();
+  const service=document.getElementById('reviewService').value;
+  const comment=document.getElementById('reviewComment').value.trim();
+  const success=document.getElementById('successMsg');
+  const error=document.getElementById('errorMsg');
+  if(!name || !service || !comment || !selectedStar){
+    error.style.display='block';
+    success.style.display='none';
+    setTimeout(()=>error.style.display='none',3500);
+    return;
+  }
+  const reviews=getReviews();
+  reviews.unshift({id:Date.now(), name, service, comment, rating:selectedStar, date:getMonthYear()});
+  saveReviews(reviews);
+  renderReviews();
+  document.getElementById('reviewName').value='';
+  document.getElementById('reviewService').value='';
+  document.getElementById('reviewComment').value='';
+  selectedStar=0;
+  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('lit'));
+  success.style.display='block';
+  error.style.display='none';
+  setTimeout(()=>success.style.display='none',4000);
+  setTimeout(()=>document.getElementById('testimonials').scrollIntoView({behavior:'smooth'}),600);
+}
+
+/* ══════════════════════════════════════════
+   MENU SYSTEM
+══════════════════════════════════════════ */
+let selectedMenu = new Map();
+
+function currency(n){
+  return `${SITE_CONFIG.currency}${n}`;
+}
+function buildMenu(){
+  const tabs = document.getElementById('menuTabs');
+  const categories = document.getElementById('menuCategories');
+  if(!tabs || !categories) return;
+
+  tabs.innerHTML = MENU_DATA.map((cat, idx) => `
+    <button class="menu-tab ${idx===0 ? 'active':''}" type="button" onclick="focusMenuCategory('${cat.id}', this)">${escHtml(cat.title)}</button>
+  `).join('');
+
+  categories.innerHTML = MENU_DATA.map(cat => {
+    const items = cat.items.map((item, i) => {
+      const displayPrice = item.price != null ? currency(item.price) : item.note || 'Price on request';
+      const selectedKey = `${cat.id}::${i}`;
+      const extra = item.price != null ? `<span class="menu-item-price">${currency(item.price)}</span>` : `<div class="menu-note">${escHtml(item.note || 'Price on request')}</div>`;
+      return `
+        <button type="button" class="menu-item" data-menu-key="${selectedKey}" data-menu-cat="${cat.id}" data-menu-name="${escHtml(item.name)}" data-menu-price="${item.price ?? ''}" data-menu-note="${escHtml(item.note || '')}" onclick="toggleMenuItem(this)">
+          <div class="menu-item-title">${escHtml(item.name)}</div>
+          ${item.note ? `<div class="menu-item-sub">${escHtml(item.note)}</div>` : ''}
+          ${item.price != null ? `<span class="menu-item-price">${currency(item.price)}</span>` : `<div class="menu-note">${escHtml(item.note || '')}</div>`}
+        </button>
+      `;
+    }).join('');
+
+    return `
+      <article class="menu-category liquid-glass menu-anchor" id="menu-${cat.id}">
+        <h3>${escHtml(cat.title)}</h3>
+        <p>${escHtml(cat.desc)}</p>
+        <div class="menu-grid">${items}</div>
+      </article>
+    `;
+  }).join('');
+
+  updateMenuSummary();
+  applyMenuSearch();
+}
+function toggleMenuItem(el){
+  const key=el.dataset.menuKey;
+  if(selectedMenu.has(key)){
+    selectedMenu.delete(key);
+    el.classList.remove('selected');
+  }else{
+    selectedMenu.set(key, {
+      cat: el.dataset.menuCat,
+      name: el.dataset.menuName,
+      price: el.dataset.menuPrice ? Number(el.dataset.menuPrice) : null,
+      note: el.dataset.menuNote || ''
+    });
+    el.classList.add('selected');
+  }
+  updateMenuSummary();
+}
+function updateMenuSummary(){
+  const list = document.getElementById('menuSummaryList');
+  const totalEl = document.getElementById('menuTotal');
+  if(!list || !totalEl) return;
+
+  const values=[...selectedMenu.values()];
+  if(!values.length){
+    list.innerHTML='<div class="menu-empty">Nothing selected yet.</div>';
+    totalEl.textContent = currency(0);
+    return;
+  }
+
+  let total = 0;
+  list.innerHTML = values.map(v => {
+    if(typeof v.price === 'number') total += v.price;
+    const priceLabel = typeof v.price === 'number' ? currency(v.price) : (v.note || 'Price on request');
+    return `<div class="summary-row"><span>${escHtml(v.name)}</span><span>${escHtml(priceLabel)}</span></div>`;
+  }).join('');
+
+  totalEl.textContent = currency(total);
+}
+function continueMenuToWhatsApp(){
+  const values=[...selectedMenu.values()];
+  if(!values.length) return;
+  const total = values.reduce((sum, v) => sum + (typeof v.price === 'number' ? v.price : 0), 0);
+  const lines = values.map(v => `• ${v.name}${typeof v.price === 'number' ? ` — ${currency(v.price)}` : (v.note ? ` — ${v.note}` : '')}`);
+  const msg = `Hello ${SITE_CONFIG.brandName}! I would like to book these services:\n\n${lines.join('\n')}\n\nTotal: ${currency(total)}\n\nPlease confirm availability.`;
+  window.open(`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function clearMenuSelection(){
+  selectedMenu.clear();
+  document.querySelectorAll('.menu-item.selected').forEach(el=>el.classList.remove('selected'));
+  updateMenuSummary();
+}
+function focusMenuCategory(id, btn){
+  document.querySelectorAll('.menu-tab').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const section=document.getElementById(`menu-${id}`);
+  if(section) section.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function openMenuToCategory(id){
+  openMenu();
+  setTimeout(()=>{
+    const target=document.getElementById(`menu-${id}`);
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    const tab=[...document.querySelectorAll('.menu-tab')].find(b=>b.getAttribute('onclick')?.includes(`'${id}'`));
+    if(tab){ document.querySelectorAll('.menu-tab').forEach(b=>b.classList.remove('active')); tab.classList.add('active'); }
+  },320);
+}
+function applyMenuSearch(){
+  const q=(document.getElementById('menuSearch')?.value || '').trim().toLowerCase();
+  document.querySelectorAll('.menu-category').forEach(cat=>{
+    let visibleCount=0;
+    cat.querySelectorAll('.menu-item').forEach(item=>{
+      const t=(item.dataset.menuName + ' ' + item.dataset.menuCat + ' ' + item.textContent).toLowerCase();
+      const show = !q || t.includes(q);
+      item.style.display = show ? '' : 'none';
+      if(show) visibleCount++;
+    });
+    cat.style.display = visibleCount ? '' : 'none';
+  });
+  document.querySelectorAll('.menu-tab').forEach(tab=>{
+    const label = tab.textContent.toLowerCase();
+    tab.style.display = !q || label.includes(q) ? '' : '';
+  });
+}
+document.addEventListener('input', e=>{
+  if(e.target && e.target.id==='menuSearch') applyMenuSearch();
+});
+window.addEventListener('storage', e=>{
+  if(e.key===REVIEW_KEY) renderReviews();
+});
+
+/* ══════════════════════════════════════════
+   NAV & GENERAL EFFECTS
 ══════════════════════════════════════════ */
 const mainNav=document.getElementById('mainNav');
 window.addEventListener('scroll',()=>mainNav.classList.toggle('scrolled',scrollY>40));
@@ -967,12 +1652,9 @@ function toggleMobile(){document.getElementById('mobileMenu').classList.toggle('
 function closeMobile(){document.getElementById('mobileMenu').classList.remove('open')}
 document.addEventListener('click',e=>{
   const menu=document.getElementById('mobileMenu');
-  if(!menu.contains(e.target)&&!e.target.closest('.hamburger'))closeMobile();
+  if(menu && !menu.contains(e.target) && !e.target.closest('.hamburger')) closeMobile();
 });
 
-/* ══════════════════════════════════════════
-   SCROLL ANIMATIONS
-══════════════════════════════════════════ */
 const obs=new IntersectionObserver(entries=>{
   entries.forEach((entry,i)=>{
     if(entry.isIntersecting){
@@ -983,7 +1665,6 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:0.08});
 document.querySelectorAll('.fade-in,.fade-left,.fade-right,.fade-scale').forEach(el=>obs.observe(el));
 
-/* ── SCROLL PROGRESS ── */
 window.addEventListener('scroll',()=>{
   const d=document.documentElement;
   const p=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;
@@ -991,48 +1672,86 @@ window.addEventListener('scroll',()=>{
   if(el) el.style.width=p+'%';
 });
 
-/* ── PARALLAX ── */
 window.addEventListener('scroll',()=>{
   document.querySelectorAll('.parallax').forEach(el=>{
     el.style.setProperty('--parallax',(window.scrollY*0.07)+'px');
   });
 });
 
-/* ── ANIMATED COUNTERS ── */
 const counterObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
-      const el=entry.target;const target=+el.dataset.target;let n=0;
+      const el=entry.target;
+      const target=+el.dataset.target;
+      let n=0;
       const step=Math.max(1,Math.ceil(target/60));
-      const t=setInterval(()=>{n+=step;if(n>=target){n=target;clearInterval(t);}el.textContent=n+(target===100?'%':'+');},20);
+      const t=setInterval(()=>{
+        n+=step;
+        if(n>=target){n=target;clearInterval(t);}
+        el.textContent=n+(target===100?'%':'+');
+      },20);
       counterObs.unobserve(el);
     }
   });
 });
 document.querySelectorAll('.counter').forEach(c=>counterObs.observe(c));
 
-/* ── CURSOR GLOW ── */
 document.addEventListener('mousemove',e=>{
   const g=document.getElementById('cursorGlow');
   if(g){g.style.left=(e.clientX-130)+'px';g.style.top=(e.clientY-130)+'px';}
 });
 
-/* ── SERVICE CLICK → WHATSAPP ── */
-const services=['Hair Services','Skincare & Facials','Makeup & Beauty'];
+/* service cards now open the menu */
 document.querySelectorAll('.service-click').forEach((card,i)=>{
   card.style.cursor='pointer';
   card.addEventListener('click',()=>{
-    const service=services[i]||'Beauty Service';
-    const msg=encodeURIComponent('Hello Beauty Essence, I would like to book '+service+'.');
-    window.open('https://wa.me/918096658578?text='+msg,'_blank');
+    const target = SERVICE_TO_MENU[i] || 'facials';
+    openMenuToCategory(target);
   });
 });
+
+/* Add a quick sale banner if configured */
+function injectSaleBanner(){
+  if(!SITE_CONFIG.weeklySaleText) return;
+  const saleBox = document.getElementById('saleBanner');
+  if(saleBox){
+    saleBox.style.display='inline-flex';
+    saleBox.textContent = SITE_CONFIG.weeklySaleText;
+    return;
+  }
+  const hero = document.querySelector('.hero-badge');
+  if(hero){
+    const sale = document.createElement('div');
+    sale.className = 'hero-badge liquid-glass';
+    sale.style.marginTop = '10px';
+    sale.textContent = SITE_CONFIG.weeklySaleText;
+    hero.insertAdjacentElement('afterend', sale);
+  }
+}
+
+function openMenu(e){
+  if(e) e.preventDefault();
+  const page=document.getElementById('menuPage');
+  if(page){
+    page.classList.add('open');
+    document.body.style.overflow='hidden';
+    buildMenu();
+    injectSaleBanner();
+    setTimeout(()=>{ const search=document.getElementById('menuSearch'); if(search) search.focus(); }, 120);
+  }
+}
+function closeMenu(){
+  const page=document.getElementById('menuPage');
+  if(page) page.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){ closeMenu(); closeHiring(); }});
 
 /* ══════════════════════════════════════════
    HIRING PAGE
 ══════════════════════════════════════════ */
 function openHiring(e){
-  if(e)e.preventDefault();
+  if(e) e.preventDefault();
   document.getElementById('hiringPage').classList.add('open');
   document.body.style.overflow='hidden';
   resetHiringForm();
@@ -1041,9 +1760,8 @@ function closeHiring(){
   document.getElementById('hiringPage').classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeHiring()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeHiring()});
 
-/* hiring form state */
 let hiringData={name:'',phone:'',age:'',area:'',exp:'',services:[],avail:'',cert:''};
 let currentStep=1;const totalSteps=8;
 
@@ -1051,7 +1769,6 @@ function updateProgress(){
   const pct=((currentStep-1)/totalSteps)*100;
   document.getElementById('progressFill').style.width=pct+'%';
 }
-
 function goStep(n){
   document.getElementById('step'+currentStep).classList.remove('active');
   currentStep=n;
@@ -1059,22 +1776,19 @@ function goStep(n){
   updateProgress();
   document.getElementById('hiringPage').scrollTo({top:0,behavior:'smooth'});
 }
-
 function checkTextInput(inputId,btnId){
   const val=document.getElementById(inputId).value.trim();
   document.getElementById(btnId).disabled=val.length<2;
-  if(inputId==='inp_name')hiringData.name=val;
-  if(inputId==='inp_phone')hiringData.phone=val;
-  if(inputId==='inp_area')hiringData.area=val;
+  if(inputId==='inp_name') hiringData.name=val;
+  if(inputId==='inp_phone') hiringData.phone=val;
+  if(inputId==='inp_area') hiringData.area=val;
 }
-
 function selectOption(el,key,value,containerId,btnId) {
   hiringData[key]=value;
   document.querySelectorAll('#'+containerId+' .step-option').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById(btnId).disabled=false;
 }
-
 function toggleMulti(el,value,btnId){
   el.classList.toggle('selected');
   const selected=[];
@@ -1085,19 +1799,17 @@ function toggleMulti(el,value,btnId){
   hiringData.services=selected;
   document.getElementById(btnId).disabled=selected.length===0;
 }
-
 function submitHiring(){
   document.getElementById('stepForm').style.display='none';
   document.getElementById('hiringSuccess').style.display='block';
   document.getElementById('progressFill').style.width='100%';
   sendToWhatsApp();
 }
-
 function sendToWhatsApp(){
   const d=hiringData;
   const servicesText=d.services.length?d.services.join(', '):'Not specified';
   const msg=
-`Hi Mohana! I'm applying for a position at Beauty Essence. 🌸
+`Hi Mohana! I'm applying for a position at ${SITE_CONFIG.brandName}. 🌸
 
 👩 Name: ${d.name}
 📱 Mobile: ${d.phone}
@@ -1108,10 +1820,9 @@ function sendToWhatsApp(){
 ⏰ Availability: ${d.avail}
 🎓 Certification: ${d.cert}
 
-I'm excited to be part of the Beauty Essence team!`;
-  window.open('https://wa.me/918096658578?text='+encodeURIComponent(msg),'_blank');
+I'm excited to be part of the ${SITE_CONFIG.brandName} team!`;
+  window.open(`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`,'_blank');
 }
-
 function resetHiringForm(){
   hiringData={name:'',phone:'',age:'',area:'',exp:'',services:[],avail:'',cert:''};
   currentStep=1;
@@ -1126,17 +1837,23 @@ function resetHiringForm(){
   document.getElementById('hiringSuccess').style.display='none';
 }
 
-/* ── INIT ── */
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
 try{
-  const existing=localStorage.getItem(STORE_KEY);
+  const existing=localStorage.getItem(REVIEW_KEY);
   if(existing){
-    if(!localStorage.getItem('be_reviews_cleared_v2')){
-      localStorage.removeItem(STORE_KEY);
-      localStorage.setItem('be_reviews_cleared_v2','1');
+    if(!localStorage.getItem('be_reviews_cleared_v3')){
+      // Keep existing reviews; this block is just a one-time migration hook.
+      localStorage.setItem('be_reviews_cleared_v3','1');
     }
   }
 }catch(e){}
+
+buildMenu();
 renderReviews();
+injectSaleBanner();
 </script>
+
 </body>
 </html>
